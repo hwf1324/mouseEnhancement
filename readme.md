@@ -9,6 +9,7 @@ This is a collection of enhancements for mouse usage in NVDA.
 
 * Fix mouse tracking in [Electron](https://www.electronjs.org/) apps.
   * Electron apps, such as [VS Code](https://code.visualstudio.com/).
+* Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 
 ## Usage
 
@@ -19,6 +20,10 @@ To enable these features, you need to install the mouseEnhancements add-on from 
 None.
 
 ## Changelog
+
+## 0.2.0
+
+* Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 
 ### 0.1.0
 
