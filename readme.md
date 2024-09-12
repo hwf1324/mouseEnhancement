@@ -7,8 +7,8 @@ This is a collection of enhancements for mouse usage in NVDA.
 
 ## Features
 
-* Fix mouse tracking in Electron apps.
-  * Electron apps, such as VS Code.
+* Fix mouse tracking in [Electron](https://www.electronjs.org/) apps.
+  * Electron apps, such as [VS Code](https://code.visualstudio.com/).
 
 ## Usage
 
