@@ -23,7 +23,7 @@ None.
 
 ## Changelog
 
-## 0.2.0
+### 0.2.0
 
 * Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 * Fixed the problem that some buttons in PDFgear could not get the description text.
