@@ -28,7 +28,7 @@ addon_info = {
 For example, fixed mouse tracking in Electron app.
 Electron apps, such as VS Code."""),
 	# version
-	"addon_version": "0.1.0",
+	"addon_version": "0.2.0",
 	# Author(s)
 	"addon_author": "hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support
