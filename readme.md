@@ -1,4 +1,4 @@
-# Mouse Enhancements
+# Mouse Enhancement
 
 This is a collection of enhancements for mouse usage in NVDA.
 Some features may be moved out as standalone features in the future.
@@ -22,6 +22,10 @@ To enable these features, you need to install the mouseEnhancements add-on from 
 None.
 
 ## Changelog
+
+### 0.3.0
+
+* Change the add-on name to: Mouse Enhancement. (Doesn't take into account add-on upgrades.)
 
 ### 0.2.0
 

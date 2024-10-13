@@ -16,31 +16,31 @@ def _(arg):
 # Add-on information variables
 addon_info = {
 	# add-on Name/identifier, internal for NVDA
-	"addon_name": "mouseEnhancements",
+	"addon_name": "mouseEnhancement",
 	# Add-on summary, usually the user visible name of the addon.
 	# Translators: Summary for this add-on
 	# to be shown on installation and add-on information found in Add-ons Manager.
-	"addon_summary": _("Mouse enhancements"),
+	"addon_summary": _("Mouse enhancement"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-	"addon_description": _("""This add-on provides enhancements to mouse functionality in NVDA.
+	"addon_description": _("""This add-on provides enhancement to mouse functionality in NVDA.
 
 For example, fixed mouse tracking in Electron app.
 Electron apps, such as VS Code."""),
 	# version
-	"addon_version": "0.2.0",
+	"addon_version": "0.3.0",
 	# Author(s)
 	"addon_author": "hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support
-	"addon_url": "https://github.com/hwf1324/mouseEnhancements",
+	"addon_url": "https://github.com/hwf1324/mouseEnhancement",
 	# URL for the add-on repository where the source code can be found
-	"addon_sourceURL": "https://github.com/hwf1324/mouseEnhancements",
+	"addon_sourceURL": "https://github.com/hwf1324/mouseEnhancement",
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
 	"addon_minimumNVDAVersion": "2024.4",
 	# Last NVDA version supported/tested (e.g. "2018.4.0", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2025.1",
+	"addon_lastTestedNVDAVersion": "2024.4",
 	# Add-on update channel (default is None, denoting stable releases,
 	# and for development releases, use "dev".)
 	# Do not change unless you know what you are doing!
@@ -59,7 +59,7 @@ Electron apps, such as VS Code."""),
 # pythonSources = ["addon/globalPlugins/*.py"]
 # For more information on SCons Glob expressions please take a look at:
 # https://scons.org/doc/production/HTML/scons-user/apd.html
-pythonSources = ["addon/globalPlugins/*.py"]
+pythonSources = []
 
 # Files that contain strings for translation. Usually your python sources
 i18nSources = pythonSources + ["buildVars.py"]
