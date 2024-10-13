@@ -26,6 +26,7 @@ None.
 ### 0.3.0
 
 * Change the add-on name to: Mouse Enhancement. (Doesn't take into account add-on upgrades.)
+* Ignore the error when entering the security screen because the object does not have the windowClassName attribute.
 
 ### 0.2.0
 
