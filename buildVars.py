@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""This add-on provides enhancement to mouse functionality in NVDA.
 
-For example, fixed mouse tracking in Electron app.
+For example, fixed mouse tracking in Electron app (2024.4 only).
 Electron apps, such as VS Code."""),
 	# version
 	"addon_version": "0.3.0",
@@ -59,7 +59,10 @@ Electron apps, such as VS Code."""),
 # pythonSources = ["addon/globalPlugins/*.py"]
 # For more information on SCons Glob expressions please take a look at:
 # https://scons.org/doc/production/HTML/scons-user/apd.html
-pythonSources = []
+pythonSources = [
+	"addon/appModules/*.py",
+	"addon/globalPlugins/*.py",
+]
 
 # Files that contain strings for translation. Usually your python sources
 i18nSources = pythonSources + ["buildVars.py"]
