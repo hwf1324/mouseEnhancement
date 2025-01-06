@@ -1,4 +1,4 @@
-* Change the add-on name to: Mouse Enhancement. (Doesn't take into account add-on upgrades.)
-* Ignore the error when entering the security screen because the object does not have the windowClassName attribute.
-* Mouse tracking can report the description of the option in the Git for Windows installer. (Individual options cannot be viewed individually.)
+* Experimental: Fix mouse tracking in WinUI apps by making `obj.appModule.isGoodUIAWindow` always return `True` when an object with a specific `windowClassName` property is encountered.
+  * Windows Terminal: If the text unit is a paragraph, moving the mouse in the Terminal control restricts the text unit to lines.
+* Electron: cleaned up some unnecessary judgment logic.
 * Update add-on template.
