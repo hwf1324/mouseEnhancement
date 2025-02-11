@@ -1,4 +1,3 @@
-* Experimental: Fix mouse tracking in WinUI apps by making `obj.appModule.isGoodUIAWindow` always return `True` when an object with a specific `windowClassName` property is encountered.
-  * Windows Terminal: If the text unit is a paragraph, moving the mouse in the Terminal control restricts the text unit to lines.
-* Electron: cleaned up some unnecessary judgment logic.
-* Update add-on template.
+* Experimental: Fix mouse tracking in Zoom, 飞书.
+* Electron: Restrict the redirection object to IAccessible to exclude applications that use UIA.
+* Git for Windows installer: Catch exceptions that can be safely ignored.

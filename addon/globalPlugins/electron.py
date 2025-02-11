@@ -7,6 +7,7 @@ import controlTypes
 import globalPluginHandler
 import IAccessibleHandler
 import winUser
+from logHandler import log
 from NVDAObjects.IAccessible import IAccessible
 from NVDAObjects.IAccessible.chromium import Document
 from NVDAObjects.IAccessible.ia2Web import Ia2Web
@@ -32,10 +33,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def chooseNVDAObjectOverlayClasses(self, obj: Ia2Web, clsList: list):
 		try:
 			if (
-				obj.windowClassName.startswith("Chrome_")
+				isinstance(obj, IAccessible)  # TODO: The UIA situation needs to be investigated.
+				and obj.windowClassName.startswith("Chrome_")
 				and obj.role == controlTypes.Role.PANE
 				and obj.previous.lastChild.windowClassName == "Chrome_RenderWidgetHostHWND"
 			):
+				log.debug("Redirecting the devInfo of the document object:\n%s" % "\n".join(obj.devInfo))
 				clsList.insert(0, RedirectDocument)
 		except AttributeError:
 			pass
