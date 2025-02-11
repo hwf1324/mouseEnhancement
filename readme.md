@@ -10,13 +10,18 @@ Some features may be moved out as standalone features in the future.
 
 * Fix mouse tracking in [Electron](https://www.electronjs.org/) apps (2024.4 only).
   * Electron apps, such as [VS Code](https://code.visualstudio.com/).
-* Experimental fix mouse tracking in [WinUI](https://github.com/microsoft/microsoft-ui-xaml) apps.
+* Experimental fix mouse tracking in [WinUI](https://github.com/microsoft/microsoft-ui-xaml), [Zoom](https://www.zoom.com/), [飞书](https://www.feishu.cn/) apps.
   * [Windows Terminal](https://github.com/microsoft/terminal): If the text unit is a paragraph, moving the mouse in the Terminal control restricts the text unit to lines.
 * Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 * Fixed the problem that some buttons in [PDFgear](https://www.pdfgear.com/) could not get the description text.
 * Mouse tracking can report the description of the option in the [Git for Windows](https://git-scm.com/downloads/win) installer. (Individual options cannot be viewed individually.)
 
 ## Changelog
+
+### v0.5.0
+
+* Experimental: Fix mouse tracking in Zoom, 飞书.
+* Electron: Restrict the redirection object to IAccessible to exclude applications that use UIA.
 
 ### v0.4.0
 
