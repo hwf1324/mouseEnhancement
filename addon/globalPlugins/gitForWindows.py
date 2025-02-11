@@ -11,12 +11,15 @@ from NVDAObjects import NVDAObject
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def event_mouseMove(self, obj: NVDAObject, nextHandler, x: int, y: int):
-		if (
-			obj.appModule.appName.startswith("git-")
-			and obj.appModule.appName.endswith("-bit")
-			and obj.role == controlTypes.Role.PANE
-			and obj.name is None
-		):
-			obj.name = obj.displayText
+		try:
+			if (
+				obj.appModule.appName.startswith("git-")
+				and obj.appModule.appName.endswith("-bit")
+				and obj.role == controlTypes.Role.PANE
+				and obj.name is None
+			):
+				obj.name = obj.displayText
+		except AttributeError:
+			pass
 
 		nextHandler()
