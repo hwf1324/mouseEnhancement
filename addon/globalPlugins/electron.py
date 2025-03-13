@@ -34,7 +34,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		try:
 			if (
 				isinstance(obj, IAccessible)  # TODO: The UIA situation needs to be investigated.
-				and obj.windowClassName.startswith("Chrome_")
+				and obj.IA2Attributes
+				in (
+					{"class": "View"},
+					{"class": "BorderView"},  # Chrome's Sidebar
+				)
+				and winUser.getClassName(obj.IA2WindowHandle) == "Chrome_WidgetWin_1"
 				and obj.role == controlTypes.Role.PANE
 				and obj.previous.lastChild.windowClassName == "Chrome_RenderWidgetHostHWND"
 			):
