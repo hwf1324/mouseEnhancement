@@ -1,3 +1,2 @@
-* Experimental: Fix mouse tracking in Zoom, 飞书.
-* Electron: Restrict the redirection object to IAccessible to exclude applications that use UIA.
-* Git for Windows installer: Catch exceptions that can be safely ignored.
+* Electron: Fix freeze when browsing search suggestions in Chrome's address bar.
+* Code cleanup: applying @josephsl's suggestions. (Code comment not perfected.)
