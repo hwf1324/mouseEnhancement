@@ -18,6 +18,11 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+### v0.5.1
+
+* Electron: Fix freeze when browsing search suggestions in Chrome's address bar.
+* Code cleanup: applying @josephsl's suggestions. (Code comment not perfected.)
+
 ### v0.5.0
 
 * Experimental: Fix mouse tracking in Zoom, 飞书.
