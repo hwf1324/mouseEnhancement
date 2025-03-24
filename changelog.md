@@ -1,2 +1,1 @@
-* Electron: Fix freeze when browsing search suggestions in Chrome's address bar.
-* Code cleanup: applying @josephsl's suggestions. (Code comment not perfected.)
+* Added the ability to automatically update the mouse object at the end of each NVDA core cycle.

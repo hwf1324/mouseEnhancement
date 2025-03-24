@@ -15,8 +15,13 @@ Some features may be moved out as standalone features in the future.
 * Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 * Fixed the problem that some buttons in [PDFgear](https://www.pdfgear.com/) could not get the description text.
 * Mouse tracking can report the description of the option in the [Git for Windows](https://git-scm.com/downloads/win) installer. (Individual options cannot be viewed individually.)
+* Automatically update the mouse object at the end of each NVDA core cycle. (This feature may be useful when using the mouse wheel.) This can be enabled/disabled in the NVDA vision settings panel.
 
 ## Changelog
+
+### v0.6.0
+
+* Added the ability to automatically update the mouse object at the end of each NVDA core cycle.
 
 ### v0.5.1
 

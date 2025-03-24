@@ -29,9 +29,10 @@ For example:
 Fixed mouse tracking in Electron app (2024.4 only).
 Electron apps, such as VS Code.
 Experimental fix for mouse tracking in WinUI apps.
-WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc."""),
+WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
+Automatically update the mouse object."""),
 	# version
-	"addon_version": "0.5.1",
+	"addon_version": "0.6.0",
 	# Author(s)
 	"addon_author": "hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support
