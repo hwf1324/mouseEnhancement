@@ -26,7 +26,7 @@ addon_info = {
 	"addon_description": _("""This add-on provides enhancement to mouse functionality in NVDA.
 
 For example:
-Fixed mouse tracking in Electron app (2024.4 only).
+Fixed mouse tracking in Electron app (Only 2024.4 or later).
 Electron apps, such as VS Code.
 Experimental fix for mouse tracking in WinUI apps.
 WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
