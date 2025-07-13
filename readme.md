@@ -4,20 +4,27 @@ This is a collection of enhancements for mouse usage in NVDA.
 Some features may be moved out as standalone features in the future.
 
 * Author: hwf1324 <1398969445@qq.com>
-* Compatibility: NVDA-2024.4 or later
+* Compatibility: NVDA-2021.1 or later
 
 ## Features
 
-* Fix mouse tracking in [Electron](https://www.electronjs.org/) apps (2024.4 only).
+* Fix mouse tracking in [Electron](https://www.electronjs.org/) apps (Only 2024.4 or later).
   * Electron apps, such as [VS Code](https://code.visualstudio.com/).
 * Experimental fix mouse tracking in [WinUI](https://github.com/microsoft/microsoft-ui-xaml), [Zoom](https://www.zoom.com/), [飞书](https://www.feishu.cn/) apps.
   * [Windows Terminal](https://github.com/microsoft/terminal): If the text unit is a paragraph, moving the mouse in the Terminal control restricts the text unit to lines.
 * Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 * Fixed the problem that some buttons in [PDFgear](https://www.pdfgear.com/) could not get the description text.
 * Mouse tracking can report the description of the option in the [Git for Windows](https://git-scm.com/downloads/win) installer. (Individual options cannot be viewed individually.)
-* Automatically update the mouse object at the end of each NVDA core cycle. (This feature may be useful when using the mouse wheel.) This can be enabled/disabled in the NVDA vision settings panel.
+* Auto Update Mouse Object. Automatically update the mouse object when scrolling the mouse wheel or at the end of each NVDA core cycle. (This feature may be useful when using the mouse wheel.) This can be enabled/disabled in the NVDA vision settings panel.
 
 ## Changelog
+
+### v0.7.0
+
+* Auto Update Mouse Object: Added a way to automatically update the mouse object when scrolling the mouse wheel.
+* Reconstructed the configuration section of Auto Update Mouse Object.
+* Updated NVDA compatibility to 2025.1 and adjusted minimum NVDA support version to 2021.1.
+* Add zh_CN translation.
 
 ### v0.6.0
 

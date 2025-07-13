@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mouseEnhancement package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mouseEnhancement 0.7.0\n"
+"Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
+"POT-Creation-Date: 2025-07-13 18:43+0000\n"
+"PO-Revision-Date: 2025-07-14 02:55+0800\n"
+"Last-Translator: hwf1324 <1398969445@qq.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. Translators: This label is the name of the setting that controls whether
+#. the mouse object is automatically updated when the mouse wheel is scrolled.
+#: addon/visionEnhancementProviders/updateMouseObject.py:33
+msgid "Mouse Wheel"
+msgstr "鼠标滚轮"
+
+#. Translators: This label is the name of the setting that controls whether
+#. the mouse object is automatically updated at the end of the core cycle.
+#: addon/visionEnhancementProviders/updateMouseObject.py:36
+msgid "Core Cycle"
+msgstr "核心周期"
+
+#. Translators: This label is the display name of the Auto update mouse object vision Enhancement Provider.
+#: addon/visionEnhancementProviders/updateMouseObject.py:46
+msgid "Auto Update Mouse Object"
+msgstr "自动更新鼠标对象"
+
+#. Translators: This label is the name of the setting that controls
+#. the automatic update method for the mouse object.
+#: addon/visionEnhancementProviders/updateMouseObject.py:55
+msgid "Automatic update mouse object method:"
+msgstr "自动更新鼠标对象的方式："
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on
+#. to be shown on installation and add-on information found in Add-ons Manager.
+#: buildVars.py:23
+msgid "Mouse Enhancement"
+msgstr "鼠标增强"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#: buildVars.py:26
+msgid ""
+"This add-on provides enhancement to mouse functionality in NVDA.\n"
+"\n"
+"For example:\n"
+"Fixed mouse tracking in Electron app (Only 2024.4 or later).\n"
+"Electron apps, such as VS Code.\n"
+"Experimental fix for mouse tracking in WinUI apps.\n"
+"WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, "
+"some applications that come with Windows, etc.\n"
+"Automatically update the mouse object."
+msgstr ""
+"该插件增强了 NVDA 中的鼠标功能。\n"
+"\n"
+"例如：\n"
+"修复 Electron 应用中的鼠标导航（仅 2024.4 或更高版本）。\n"
+"Electron 应用，例如 VS Code。\n"
+"实验性修复 WinUI 应用中的鼠标导航。\n"
+"WinUI 应用：例如 Windows 终端，PowerToys v0.86.0 及更高版本，Windows "
+"预装的某些应用程序等。\n"
+"自动更新鼠标对象。"

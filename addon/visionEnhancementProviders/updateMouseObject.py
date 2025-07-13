@@ -5,6 +5,7 @@
 
 """Automatically updates the mouse object vision Enhancement Provider."""
 
+import addonHandler
 import mouseHandler
 import winInputHook
 from autoSettingsUtils.autoSettings import SupportedSettingType
@@ -14,6 +15,8 @@ from logHandler import log
 from vision import providerBase
 from vision.visionHandlerExtensionPoints import EventExtensionPoints
 
+
+addonHandler.initTranslation()
 
 WM_MOUSEHWHEEL = 0x020E
 WM_MOUSEWHEEL = 0x020A
@@ -26,7 +29,7 @@ class AutoUpdateMouseObjectSettings(providerBase.VisionEnhancementProviderSettin
 
 	availableUpdatemethods = {
 		# Translators: This label is the name of the setting that controls whether
-		# the mouse object is automatically updated when the mouse wheel is rolled.
+		# the mouse object is automatically updated when the mouse wheel is scrolled.
 		"mouseWheel": StringParameterInfo("mouseWheel", _("Mouse Wheel")),
 		# Translators: This label is the name of the setting that controls whether
 		# the mouse object is automatically updated at the end of the core cycle.
