@@ -14,6 +14,9 @@ from NVDAObjects.IAccessible.chromium import Document
 from NVDAObjects.IAccessible.ia2Web import Ia2Web
 
 
+isDebug: bool = False
+
+
 class RedirectDocument(Ia2Web):
 
 	def objectFromPointRedirect(self, x: int, y: int):
@@ -43,7 +46,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					and winUser.getClassName(obj.IA2WindowHandle) == "Chrome_WidgetWin_1"
 					and obj.previous.lastChild.windowClassName == "Chrome_RenderWidgetHostHWND"
 				):
-					log.debug("Redirecting the devInfo of the document object:\n%s" % "\n".join(obj.devInfo))
+					if isDebug:
+						log.debug("Redirecting the devInfo of the document object:\n%s" % "\n".join(obj.devInfo))
 					clsList.insert(0, RedirectDocument)
 
 				if (  # WinUI
