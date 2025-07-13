@@ -6,14 +6,32 @@
 """Automatically updates the mouse object vision Enhancement Provider."""
 
 import mouseHandler
+import winInputHook
 from autoSettingsUtils.autoSettings import SupportedSettingType
-from autoSettingsUtils.driverSetting import BooleanDriverSetting
+from autoSettingsUtils.driverSetting import DriverSetting
+from autoSettingsUtils.utils import StringParameterInfo
+from logHandler import log
 from vision import providerBase
 from vision.visionHandlerExtensionPoints import EventExtensionPoints
 
 
+WM_MOUSEHWHEEL = 0x020E
+WM_MOUSEWHEEL = 0x020A
+
+old_mouseCallback = mouseHandler.internal_mouseEvent
+
+
 class AutoUpdateMouseObjectSettings(providerBase.VisionEnhancementProviderSettings):
-	coreCycle: bool
+	updateMethod: str
+
+	availableUpdatemethods = {
+		# Translators: This label is the name of the setting that controls whether
+		# the mouse object is automatically updated when the mouse wheel is rolled.
+		"mouseWheel": StringParameterInfo("mouseWheel", _("Mouse Wheel")),
+		# Translators: This label is the name of the setting that controls whether
+		# the mouse object is automatically updated at the end of the core cycle.
+		"coreCycle": StringParameterInfo("coreCycle", _("Core Cycle")),
+	}
 
 	@classmethod
 	def getId(cls) -> str:
@@ -27,12 +45,12 @@ class AutoUpdateMouseObjectSettings(providerBase.VisionEnhancementProviderSettin
 	@classmethod
 	def getPreInitSettings(cls) -> SupportedSettingType:
 		return [
-			BooleanDriverSetting(
-				"coreCycle",
-				# Translators: This label is the name of the setting that controls whether
-				# the mouse object is automatically updated at the end of the core cycle.
-				_("Automatically update the mouse object at the end of each core cycle"),
-				defaultVal=True,
+			DriverSetting(
+				"updateMethod",
+				# Translators: This label is the name of the setting that controls
+				# the automatic update method for the mouse object.
+				_("Automatic update mouse object method:"),
+				defaultVal="mouseWheel",
 			),
 		]
 
@@ -57,13 +75,24 @@ class AutoUpdateMouseObjectProvider(providerBase.VisionEnhancementProvider):
 
 	def __init__(self):
 		super().__init__()
+		if winInputHook.mouseCallback:
+			log.info("Hooking mouseHandler.internal_mouseEvent function...")
+			winInputHook.setCallbacks(mouse=self.handleWindowMouseWheelMessage)
+
+	def handleWindowMouseWheelMessage(self, msg: int, x: int, y: int, injected: int):
+		if self._settings.updateMethod == "mouseWheel" and msg in (WM_MOUSEWHEEL, WM_MOUSEHWHEEL):
+			mouseHandler.executeMouseMoveEvent(x, y)
+
+		return old_mouseCallback(msg, x, y, injected)
 
 	def handleCoreCycle(self):
-		if self._settings.coreCycle:
+		if self._settings.updateMethod == "coreCycle":
 			mouseHandler.executeMouseMoveEvent(*mouseHandler.curMousePos)
 
 	def terminate(self):
-		pass
+		if winInputHook.mouseCallback:
+			log.info("Unhooking mouseHandler.internal_mouseEvent function...")
+			winInputHook.setCallbacks(mouse=old_mouseCallback)
 
 	def registerEventExtensionPoints(self, extensionPoints: EventExtensionPoints):
 		extensionPoints.post_coreCycle.register(self.handleCoreCycle)
