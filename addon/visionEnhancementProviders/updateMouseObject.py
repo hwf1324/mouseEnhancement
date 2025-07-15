@@ -6,6 +6,7 @@
 """Automatically updates the mouse object vision Enhancement Provider."""
 
 import addonHandler
+import core
 import mouseHandler
 import winInputHook
 from autoSettingsUtils.autoSettings import SupportedSettingType
@@ -14,6 +15,7 @@ from autoSettingsUtils.utils import StringParameterInfo
 from logHandler import log
 from vision import providerBase
 from vision.visionHandlerExtensionPoints import EventExtensionPoints
+from winAPI.messageWindow import pre_handleWindowMessage
 
 
 addonHandler.initTranslation()
@@ -22,6 +24,12 @@ WM_MOUSEHWHEEL = 0x020E
 WM_MOUSEWHEEL = 0x020A
 
 old_mouseCallback = mouseHandler.internal_mouseEvent
+
+
+def forwardHookMouseMessage(msg: int, x: int, y: int, injected: int):
+	pre_handleWindowMessage.notify(msg=msg, wParam=None, lParam=None)
+
+	return old_mouseCallback(msg, x, y, injected)
 
 
 class AutoUpdateMouseObjectSettings(providerBase.VisionEnhancementProviderSettings):
@@ -80,19 +88,19 @@ class AutoUpdateMouseObjectProvider(providerBase.VisionEnhancementProvider):
 		super().__init__()
 		if winInputHook.mouseCallback:
 			log.info("Hooking mouseHandler.internal_mouseEvent function...")
-			winInputHook.setCallbacks(mouse=self.handleWindowMouseWheelMessage)
+			winInputHook.setCallbacks(mouse=forwardHookMouseMessage)
+			pre_handleWindowMessage.register(self.handleWindowMouseWheelMessage)
 
-	def handleWindowMouseWheelMessage(self, msg: int, x: int, y: int, injected: int):
+	def handleWindowMouseWheelMessage(self, msg: int, wParam: int, lParam: int):
 		if self._settings.updateMethod == "mouseWheel" and msg in (WM_MOUSEWHEEL, WM_MOUSEHWHEEL):
-			mouseHandler.executeMouseMoveEvent(x, y)
-
-		return old_mouseCallback(msg, x, y, injected)
+			core.callLater(100, mouseHandler.executeMouseMoveEvent, *mouseHandler.curMousePos)
 
 	def handleCoreCycle(self):
 		if self._settings.updateMethod == "coreCycle":
 			mouseHandler.executeMouseMoveEvent(*mouseHandler.curMousePos)
 
 	def terminate(self):
+		pre_handleWindowMessage.unregister(self.handleWindowMouseWheelMessage)
 		if winInputHook.mouseCallback:
 			log.info("Unhooking mouseHandler.internal_mouseEvent function...")
 			winInputHook.setCallbacks(mouse=old_mouseCallback)
