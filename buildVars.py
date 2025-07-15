@@ -32,7 +32,7 @@ Experimental fix for mouse tracking in WinUI apps.
 WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
 Automatically update the mouse object."""),
 	# version
-	"addon_version": "0.7.0",
+	"addon_version": "0.7.1",
 	# Author(s)
 	"addon_author": "hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support

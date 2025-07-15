@@ -1,6 +1,4 @@
-# v0.7.0
+# v0.7.1
 
-* Auto Update Mouse Object: Added a way to automatically update the mouse object when scrolling the mouse wheel.
-* Reconstructed the configuration section of Auto Update Mouse Object.
-* Updated NVDA compatibility to 2025.1 and adjusted minimum NVDA support version to 2021.1.
-* Add zh_CN translation.
+* Auto Update Mouse Object: Improved stability when automatically updating mouse objects while scrolling the mouse wheel.
+* Forward mouse messages received by the NVDA mouse hook to the `pre_handleWindowMessage` extension point. (Exclude the wParam and lParam parameters, which should be set to `None`.)
