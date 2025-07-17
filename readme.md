@@ -19,6 +19,10 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+## v0.7.2
+
+* Fixed incorrect API compatibility version, adjusted the minimum version supported by NVDA to 2022.1.
+
 ## v0.7.1
 
 * Auto Update Mouse Object: Improved stability when automatically updating mouse objects while scrolling the mouse wheel.
