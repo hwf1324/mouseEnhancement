@@ -4,7 +4,7 @@ This is a collection of enhancements for mouse usage in NVDA.
 Some features may be moved out as standalone features in the future.
 
 * Author: hwf1324 <1398969445@qq.com>
-* Compatibility: NVDA-2021.1 or later
+* Compatibility: NVDA-2022.1 or later
 
 ## Features
 
@@ -14,16 +14,21 @@ Some features may be moved out as standalone features in the future.
   * [Windows Terminal](https://github.com/microsoft/terminal): If the text unit is a paragraph, moving the mouse in the Terminal control restricts the text unit to lines.
 * Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 * Fixed the problem that some buttons in [PDFgear](https://www.pdfgear.com/) could not get the description text.
-* Mouse tracking can report the description of the option in the [Git for Windows](https://git-scm.com/downloads/win) installer. (Individual options cannot be viewed individually.)
 * Auto Update Mouse Object. Automatically update the mouse object when scrolling the mouse wheel or at the end of each NVDA core cycle. (This feature may be useful when using the mouse wheel.) This can be enabled/disabled in the NVDA vision settings panel.
 
 ## Changelog
 
-## v0.7.2
+### v0.8.0
+
+* Removed the unstable Git for Windows Installer related feature.
+* Update add-on template.
+* Add Ukrainian locale and doc.
+
+### v0.7.2
 
 * Fixed incorrect API compatibility version, adjusted the minimum version supported by NVDA to 2022.1.
 
-## v0.7.1
+### v0.7.1
 
 * Auto Update Mouse Object: Improved stability when automatically updating mouse objects while scrolling the mouse wheel.
 * Forward mouse messages received by the NVDA mouse hook to the `pre_handleWindowMessage` extension point. (Exclude the wParam and lParam parameters, which should be set to `None`.)

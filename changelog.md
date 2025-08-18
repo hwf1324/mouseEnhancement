@@ -1,3 +1,7 @@
-# v0.7.2
+# v0.8.0
 
-* Fixed incorrect API compatibility version, adjusted the minimum version supported by NVDA to 2022.1.
+* Removed the unstable Git for Windows Installer related feature.
+* Update add-on template.
+* Add Ukrainian locale and doc. (#10 @balaraz)
+
+Thanks to @balaraz for your contribution.
