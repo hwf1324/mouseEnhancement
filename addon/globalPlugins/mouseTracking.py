@@ -64,17 +64,3 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					obj.appModule.isGoodUIAWindow = lambda hwnd: True
 		except AttributeError:
 			pass
-
-	def event_mouseMove(self, obj: NVDAObject, nextHandler, x: int, y: int):
-		try:
-			if (  # Git for Windows installer
-				obj.appModule.appName.startswith("git-")
-				and obj.appModule.appName.endswith("-bit")
-				and obj.role == controlTypes.Role.PANE
-				and obj.name
-			):
-				obj.name = obj.displayText
-		except AttributeError:
-			pass
-
-		nextHandler()
