@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: mouseEnhancement 0.7.2\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
 "POT-Creation-Date: 2025-08-17 16:02+0000\n"
-"PO-Revision-Date: 2025-08-17 19:15+0300\n"
+"PO-Revision-Date: 2025-08-18 13:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -28,7 +28,7 @@ msgstr "Коліщатко миші"
 #. the mouse object is automatically updated at the end of the core cycle.
 #: addon/visionEnhancementProviders/updateMouseObject.py:44
 msgid "Core Cycle"
-msgstr ""
+msgstr "Цикл ядра"
 
 #. Translators: This label is the display name of the Auto update mouse object vision Enhancement Provider.
 #: addon/visionEnhancementProviders/updateMouseObject.py:54
