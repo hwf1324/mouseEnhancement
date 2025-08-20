@@ -33,12 +33,7 @@ Automatically update the mouse object."""),
 	addon_version="0.8.0",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""* Removed the unstable Git for Windows Installer related feature.
-* Update add-on template.
-* Add Ukrainian locale and doc. (#10 @balaraz)
-
-Thanks to @balaraz for your contribution.
-"""),
+	addon_changelog=None,
 	# Author(s)
 	addon_author="hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support
