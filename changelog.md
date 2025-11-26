@@ -1,7 +1,4 @@
-# v0.8.0
+# v0.8.1
 
-* Removed the unstable Git for Windows Installer related feature.
+* Update PDFgear rules
 * Update add-on template.
-* Add Ukrainian locale and doc. (#10 @balaraz)
-
-Thanks to @balaraz for your contribution.

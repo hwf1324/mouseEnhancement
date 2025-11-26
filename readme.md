@@ -18,6 +18,11 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+### v0.8.1
+
+* Update PDFgear rules
+* Update add-on template.
+
 ### v0.8.0
 
 * Removed the unstable Git for Windows Installer related feature.
