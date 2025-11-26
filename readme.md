@@ -21,6 +21,7 @@ Some features may be moved out as standalone features in the future.
 ### v0.8.1
 
 * Update PDFgear rules
+* Update add-on template.
 
 ### v0.8.0
 
