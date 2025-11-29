@@ -30,10 +30,12 @@ Experimental fix for mouse tracking in WinUI apps.
 WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
 Automatically update the mouse object."""),
 	# version
-	addon_version="0.8.2",
+	addon_version="0.8.3",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""* Update Electron rules to work with UIA."""),
+	addon_changelog=_(
+		"""* Disable the `Intermediate D3D Window` window class rule, as Chrome also uses this window class."""
+	),
 	# Author(s)
 	addon_author="hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support
