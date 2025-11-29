@@ -30,15 +30,10 @@ Experimental fix for mouse tracking in WinUI apps.
 WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
 Automatically update the mouse object."""),
 	# version
-	addon_version="0.8.1",
+	addon_version="0.8.2",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""* Removed the unstable Git for Windows Installer related feature.
-* Update add-on template.
-* Add Ukrainian locale and doc. (#10 @balaraz)
-
-Thanks to @balaraz for your contribution.
-"""),
+	addon_changelog=_("""* Update Electron rules to work with UIA."""),
 	# Author(s)
 	addon_author="hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support
@@ -70,8 +65,8 @@ Thanks to @balaraz for your contribution.
 # For more information on SCons Glob expressions please take a look at:
 # https://scons.org/doc/production/HTML/scons-user/apd.html
 pythonSources: list[str] = [
-	"addon/appModules/*.py",
-	"addon/globalPlugins/*.py",
+	# "addon/appModules/*.py",
+	# "addon/globalPlugins/*.py",
 	"addon/visionEnhancementProviders/*.py",
 ]
 
