@@ -18,9 +18,13 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+### v0.8.2
+
+* Update Electron rules to work with UIA.
+
 ### v0.8.1
 
-* Update PDFgear rules
+* Update PDFgear rules.
 * Update add-on template.
 
 ### v0.8.0

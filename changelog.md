@@ -1,4 +1,3 @@
-# v0.8.1
+# v0.8.2
 
-* Update PDFgear rules
-* Update add-on template.
+* Update Electron rules to work with UIA.

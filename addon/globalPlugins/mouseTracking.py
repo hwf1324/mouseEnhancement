@@ -12,6 +12,7 @@ from NVDAObjects import NVDAObject
 from NVDAObjects.IAccessible import IAccessible
 from NVDAObjects.IAccessible.chromium import Document
 from NVDAObjects.IAccessible.ia2Web import Ia2Web
+from NVDAObjects.UIA import UIA
 
 
 isDebug: bool = False
@@ -50,17 +51,22 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 						log.debug("Redirecting the devInfo of the document object:\n%s" % "\n".join(obj.devInfo))
 					clsList.insert(0, RedirectDocument)
 
-				if (  # WinUI
-					obj.windowClassName in (
-						"Microsoft.UI.Content.DesktopChildSiteBridge",
-						"Windows.UI.Composition.DesktopWindowContentBridge",
-					)
-					and not obj.appModule.isGoodUIAWindow(obj.windowHandle)
-				):
-					log.debug(
+				if obj.windowClassName in (  # Force the use of the application's UIA implementation
+					"Microsoft.UI.Content.DesktopChildSiteBridge",  # WinUI
+					"Windows.UI.Composition.DesktopWindowContentBridge",
+					"Intermediate D3D Window",  # Electron with UIA
+				) and not obj.appModule.isGoodUIAWindow(obj.windowHandle):
+					log.info(
 						"Determines the devInfo that is forced to be a good UIA window object:\n%s"
 						% "\n".join(obj.devInfo)
 					)
 					obj.appModule.isGoodUIAWindow = lambda hwnd: True
+			if (  # TODO: Rules may not be tight enough
+				isinstance(obj, IAccessible)
+				and obj.childCount == 0
+				and isinstance(obj.parent, UIA)
+				and not obj.appModule.isGoodUIAWindow(obj.windowHandle)
+			):
+				obj.appModule.isGoodUIAWindow = lambda hwnd: True
 		except AttributeError:
 			pass
