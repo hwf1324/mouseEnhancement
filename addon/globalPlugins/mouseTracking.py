@@ -54,7 +54,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				if obj.windowClassName in (  # Force the use of the application's UIA implementation
 					"Microsoft.UI.Content.DesktopChildSiteBridge",  # WinUI
 					"Windows.UI.Composition.DesktopWindowContentBridge",
-					"Intermediate D3D Window",  # Electron with UIA
+					# ! Since #18 temporarily disables this rule, note: Chrome also uses this window class instead of just Electron.
+					# "Intermediate D3D Window",  # Chromium with UIA
 				) and not obj.appModule.isGoodUIAWindow(obj.windowHandle):
 					log.info(
 						"Determines the devInfo that is forced to be a good UIA window object:\n%s"
@@ -67,6 +68,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				and isinstance(obj.parent, UIA)
 				and not obj.appModule.isGoodUIAWindow(obj.windowHandle)
 			):
+				log.info(
+					"Determines the devInfo that is forced to be a good UIA window object:\n%s"
+					% "\n".join(obj.devInfo)
+				)
 				obj.appModule.isGoodUIAWindow = lambda hwnd: True
 		except AttributeError:
 			pass

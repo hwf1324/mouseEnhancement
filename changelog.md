@@ -1,3 +1,3 @@
-# v0.8.2
+# v0.8.3
 
-* Update Electron rules to work with UIA.
+* Disable the `Intermediate D3D Window` window class rule, as Chrome also uses this window class.

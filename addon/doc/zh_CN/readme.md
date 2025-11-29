@@ -18,6 +18,10 @@
 
 ## 更新日志
 
+### v0.8.3
+
+* 禁用 `Intermediate D3D Window` 窗口类规则，因为 Chrome 也使用这个窗口类。
+
 ### v0.8.2
 
 * 更新 Electron 规则以适配 UIA。

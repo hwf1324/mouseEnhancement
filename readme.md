@@ -18,6 +18,10 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+### v0.8.3
+
+* Disable the `Intermediate D3D Window` window class rule, as Chrome also uses this window class.
+
 ### v0.8.2
 
 * Update Electron rules to work with UIA.
