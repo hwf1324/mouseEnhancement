@@ -18,6 +18,10 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+### v0.8.4
+
+* Refactor the "force use of the application's UIA implementation" judgment logic and exclude Chrome's sidebar extensions from affecting Chrome.
+
 ### v0.8.3
 
 * Disable the `Intermediate D3D Window` window class rule, as Chrome also uses this window class.
