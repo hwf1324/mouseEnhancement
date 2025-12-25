@@ -18,6 +18,13 @@
 
 ## 更新日志
 
+### v0.9.0
+
+* 重构 Electron UIA 相关部分：
+  * 使用 `IUIAutomation.ElementFromPointBuildCache` 方法从坐标获取 UIA 元素，用于创建重定向的鼠标对象。
+  * 同时使用 `IUIAutomationCondition` 排除 `Name` 属性为空字符串的 UIA 元素，以修复鼠标导航 VS Code 时的一些问题。
+    * 例如现在可以读取悬浮面板上的文本。
+
 ### v0.8.4
 
 * 重构“强制使用应用程序的 UIA 实现”的判断逻辑，并排除 Chrome 浏览器侧边栏扩展对 Chrome 浏览器的影响。

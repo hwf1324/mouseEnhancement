@@ -1,3 +1,6 @@
-# v0.8.4
+# v0.9.0
 
-* Refactor the "force use of the application's UIA implementation" judgment logic and exclude Chrome's sidebar extensions from affecting Chrome.
+* Refactored Electron UIA-related components:
+  * Utilized the `IUIAutomation.ElementFromPointBuildCache` method to retrieve UIA elements from coordinates for creating redirected mouse objects.
+  * Simultaneously employed `IUIAutomationCondition` to exclude UIA elements with an empty `Name` attribute, resolving certain issues encountered during mouse navigation in VS Code.
+    * For example it is now possible to read the text on the hover panel.

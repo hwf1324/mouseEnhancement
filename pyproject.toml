@@ -39,6 +39,31 @@ ignore = [
 # so ignore F821.
 "sconstruct" = ["F821"]
 
+[tool.ty.environment]
+python = "../nvda/.venv"
+# Tailor type stubs and conditionalized type definitions to windows.
+python-platform = "win32"
+root = ["./addon"]
+# Tell ty where to load python code from
+extra-paths = [
+	"./addon",
+	"../nvda/source",
+]
+
+[tool.ty.src]
+include = [
+	"**/*.py",
+]
+
+exclude = [
+	"sconstruct",
+	".git",
+	"__pycache__",
+	# When excluding concrete paths relative to a directory,
+	# not matching multiple folders by name e.g. `__pycache__`,
+	# paths are relative to the configuration file.
+]
+
 [tool.pyright]
 pythonPlatform = "Windows"
 typeCheckingMode = "strict"
