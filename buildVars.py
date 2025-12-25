@@ -30,11 +30,14 @@ Experimental fix for mouse tracking in WinUI apps.
 WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
 Automatically update the mouse object."""),
 	# version
-	addon_version="0.8.4",
+	addon_version="0.9.0",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
 	addon_changelog=_(
-		"""* Refactor the "force use of the application's UIA implementation" judgment logic and exclude Chrome's sidebar extensions from affecting Chrome."""
+		"""* Refactored Electron UIA-related components:
+  * Utilized the `IUIAutomation.ElementFromPointBuildCache` method to retrieve UIA elements from coordinates for creating redirected mouse objects.
+  * Simultaneously employed `IUIAutomationCondition` to exclude UIA elements with an empty `Name` attribute, resolving certain issues encountered during mouse navigation in VS Code.
+    * For example it is now possible to read the text on the hover panel."""
 	),
 	# Author(s)
 	addon_author="hwf1324 <1398969445@qq.com>",
