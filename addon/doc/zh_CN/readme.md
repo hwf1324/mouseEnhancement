@@ -14,6 +14,7 @@
   * [Windows 终端](https://github.com/microsoft/terminal)：如果文本识别单元室段落，则在终端控件中移动鼠标时，将文本识别单元限制为行。
 * 修复部分 NVIDIA 控制面板中静态文本控件的错误描述。
 * 修复了 [PDFgear](https://www.pdfgear.com/) 中按钮无法获取描述文本的问题。
+* 在鼠标移动时报告 [Tree Style Tab](https://piro.sakura.ne.jp/xul/_treestyletab.html.en) 扩展上标签页的信息。
 * 自动更新鼠标对象。当滚动鼠标滚轮或在 NVDA 核心周期的末尾时，自动更新鼠标对象。（这个功能在操作鼠标滚轮时可能非常有用。）可以在NVDA视觉设置面板中启用或禁用该功能。
   * 仅当在更新方式为“核心周期”时，鼠标移动事件延迟参数才会生效，以实现 <https://github.com/nvaccess/nvda/issues/19372>。
 
@@ -26,6 +27,7 @@
   * 同时使用 `IUIAutomationCondition` 排除 `Name` 属性为空字符串的 UIA 元素，以修复鼠标导航 VS Code 时的一些问题。
     * 例如现在可以读取悬浮面板上的文本。
 * 在仅限核心周期自动更新鼠标对象时添加鼠标移动事件延迟参数，作为 <https://github.com/nvaccess/nvda/issues/19372> 的实验性实现。
+* 在鼠标移动时报告 Tree Style Tab 扩展上标签页的信息。
 
 ### v0.8.4
 
