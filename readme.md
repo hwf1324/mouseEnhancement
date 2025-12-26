@@ -15,6 +15,7 @@ Some features may be moved out as standalone features in the future.
 * Fix a part of the NVIDIA Control Panel where the content of the static text description control is incorrect.
 * Fixed the problem that some buttons in [PDFgear](https://www.pdfgear.com/) could not get the description text.
 * Auto Update Mouse Object. Automatically update the mouse object when scrolling the mouse wheel or at the end of each NVDA core cycle. (This feature may be useful when using the mouse wheel.) This can be enabled/disabled in the NVDA vision settings panel.
+  * The mouse move event delay parameter only takes effect when the update method is set to “core cycle,” enabling <https://github.com/nvaccess/nvda/issues/19372>.
 
 ## Changelog
 
@@ -24,6 +25,7 @@ Some features may be moved out as standalone features in the future.
   * Utilized the `IUIAutomation.ElementFromPointBuildCache` method to retrieve UIA elements from coordinates for creating redirected mouse objects.
   * Simultaneously employed `IUIAutomationCondition` to exclude UIA elements with an empty `Name` attribute, resolving certain issues encountered during mouse navigation in VS Code.
     * For example it is now possible to read the text on the hover panel.
+* Add a mouse move event delay parameter when mouse objects are automatically updated only during core cycles, as an experimental implementation of <https://github.com/nvaccess/nvda/issues/19372>.
 
 ### v0.8.4
 
