@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mouseEnhancement 0.7.0\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2025-12-26 21:04+0800\n"
-"PO-Revision-Date: 2025-12-26 21:08+0800\n"
+"POT-Creation-Date: 2025-12-26 21:48+0800\n"
+"PO-Revision-Date: 2025-12-26 21:50+0800\n"
 "Last-Translator: hwf1324 <1398969445@qq.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -48,15 +48,13 @@ msgstr "鼠标移动事件延迟（%秒）"
 
 #. Translators: Enable checkbox on a vision enhancement provider on the vision settings category panel
 #: addon\visionEnhancementProviders\updateMouseObject.py:117
-#, fuzzy
-#| msgid "Auto Update Mouse Object"
 msgid "Enable Auto Update Mouse Object"
-msgstr "自动更新鼠标对象"
+msgstr "启用自动更新鼠标对象"
 
 #. Translators: Options label on a vision enhancement provider on the vision settings category panel
 #: addon\visionEnhancementProviders\updateMouseObject.py:127
 msgid "Options:"
-msgstr ""
+msgstr "选项："
 
 #. Add-on summary/title, usually the user visible name of the add-on
 #. Translators: Summary/title for this add-on
@@ -98,8 +96,22 @@ msgid ""
 "  * Simultaneously employed `IUIAutomationCondition` to exclude UIA elements "
 "with an empty `Name` attribute, resolving certain issues encountered during "
 "mouse navigation in VS Code.\n"
-"    * For example it is now possible to read the text on the hover panel."
+"    * For example it is now possible to read the text on the hover panel.\n"
+"* Add a mouse move event delay parameter when mouse objects are "
+"automatically updated only during core cycles, as an experimental "
+"implementation of <https://github.com/nvaccess/nvda/issues/19372>.\n"
+"* Report information on the Tree Style Tab extension tab when the mouse "
+"moves."
 msgstr ""
+"* 重构 Electron UIA 相关部分：\n"
+"  * 使用 `IUIAutomation.ElementFromPointBuildCache` 方法从坐标获取 UIA 元素，"
+"用于创建重定向的鼠标对象。\n"
+"  * 同时使用 `IUIAutomationCondition` 排除 `Name` 属性为空字符串的 UIA 元素，"
+"以修复鼠标导航 VS Code 时的一些问题。\n"
+"    * 例如现在可以读取悬浮面板上的文本。\n"
+"* 在仅限核心周期自动更新鼠标对象时添加鼠标移动事件延迟参数，作为 <https://"
+"github.com/nvaccess/nvda/issues/19372> 的实验性实现。\n"
+"* 在鼠标移动时报告 Tree Style Tab 扩展上标签页的信息。"
 
 #~ msgid ""
 #~ "* Refactor the \"force use of the application's UIA implementation\" "
