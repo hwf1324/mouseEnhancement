@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mouseEnhancement 0.7.0\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2025-11-30 23:32+0800\n"
-"PO-Revision-Date: 2025-11-30 23:35+0800\n"
+"POT-Creation-Date: 2025-12-26 21:04+0800\n"
+"PO-Revision-Date: 2025-12-26 21:08+0800\n"
 "Last-Translator: hwf1324 <1398969445@qq.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -20,26 +20,43 @@ msgstr ""
 
 #. Translators: This label is the name of the setting that controls whether
 #. the mouse object is automatically updated when the mouse wheel is scrolled.
-#: addon\visionEnhancementProviders\updateMouseObject.py:41
+#: addon\visionEnhancementProviders\updateMouseObject.py:50
 msgid "Mouse Wheel"
 msgstr "鼠标滚轮"
 
 #. Translators: This label is the name of the setting that controls whether
 #. the mouse object is automatically updated at the end of the core cycle.
-#: addon\visionEnhancementProviders\updateMouseObject.py:44
+#: addon\visionEnhancementProviders\updateMouseObject.py:53
 msgid "Core Cycle"
 msgstr "核心周期"
 
 #. Translators: This label is the display name of the Auto update mouse object vision Enhancement Provider.
-#: addon\visionEnhancementProviders\updateMouseObject.py:54
+#: addon\visionEnhancementProviders\updateMouseObject.py:63
 msgid "Auto Update Mouse Object"
 msgstr "自动更新鼠标对象"
 
 #. Translators: This label is the name of the setting that controls
 #. the automatic update method for the mouse object.
-#: addon\visionEnhancementProviders\updateMouseObject.py:63
-msgid "Automatic update mouse object method:"
-msgstr "自动更新鼠标对象的方式："
+#: addon\visionEnhancementProviders\updateMouseObject.py:72
+msgid "Automatic update mouse object method"
+msgstr "自动更新鼠标对象的方式"
+
+#. Translators: This label is the name of the setting that controls the mouse move event delay.
+#: addon\visionEnhancementProviders\updateMouseObject.py:78
+msgid "Mouse move event delay (%S)"
+msgstr "鼠标移动事件延迟（%秒）"
+
+#. Translators: Enable checkbox on a vision enhancement provider on the vision settings category panel
+#: addon\visionEnhancementProviders\updateMouseObject.py:117
+#, fuzzy
+#| msgid "Auto Update Mouse Object"
+msgid "Enable Auto Update Mouse Object"
+msgstr "自动更新鼠标对象"
+
+#. Translators: Options label on a vision enhancement provider on the vision settings category panel
+#: addon\visionEnhancementProviders\updateMouseObject.py:127
+msgid "Options:"
+msgstr ""
 
 #. Add-on summary/title, usually the user visible name of the add-on
 #. Translators: Summary/title for this add-on
@@ -74,11 +91,23 @@ msgstr ""
 
 #: buildVars.py:37
 msgid ""
-"* Refactor the \"force use of the application's UIA implementation\" "
-"judgment logic and exclude Chrome's sidebar extensions from affecting Chrome."
+"* Refactored Electron UIA-related components:\n"
+"  * Utilized the `IUIAutomation.ElementFromPointBuildCache` method to "
+"retrieve UIA elements from coordinates for creating redirected mouse "
+"objects.\n"
+"  * Simultaneously employed `IUIAutomationCondition` to exclude UIA elements "
+"with an empty `Name` attribute, resolving certain issues encountered during "
+"mouse navigation in VS Code.\n"
+"    * For example it is now possible to read the text on the hover panel."
 msgstr ""
-"* 重构“强制使用应用程序的 UIA 实现”的判断逻辑，并排除 Chrome 浏览器侧边栏扩展"
-"对 Chrome 浏览器的影响。"
+
+#~ msgid ""
+#~ "* Refactor the \"force use of the application's UIA implementation\" "
+#~ "judgment logic and exclude Chrome's sidebar extensions from affecting "
+#~ "Chrome."
+#~ msgstr ""
+#~ "* 重构“强制使用应用程序的 UIA 实现”的判断逻辑，并排除 Chrome 浏览器侧边栏"
+#~ "扩展对 Chrome 浏览器的影响。"
 
 #~ msgid ""
 #~ "* Disable the `Intermediate D3D Window` window class rule, as Chrome also "

@@ -3,11 +3,14 @@
 # See the file COPYING.txt for more details.
 # Copyright (C) 2024-2025 hwf1324 <1398969445@qq.com>
 
+import time
 from ctypes.wintypes import POINT
 
+import config
 import controlTypes
 import globalPluginHandler
 import IAccessibleHandler
+import mouseHandler
 import UIAHandler
 import winUser
 from comtypes import COMError
@@ -115,3 +118,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					obj.appModule.isGoodUIAWindow = lambda hwnd: True
 		except AttributeError:
 			pass
+
+	def event_mouseMove(self, obj: NVDAObject, nextHandler, x: int, y: int):
+		if (
+			config.conf["vision"]["autoUpdateMouseObject"]["updateMethod"] == "coreCycle"
+			and mouseHandler.lastMouseEventTime >= time.time() - (config.conf["vision"]["autoUpdateMouseObject"]["mouseMoveEventDelay"] / 1000)
+		):
+			return
+		nextHandler()

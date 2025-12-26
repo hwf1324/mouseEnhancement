@@ -7,50 +7,67 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mouseEnhancement 0.7.2\n"
-"Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
-"POT-Creation-Date: 2025-08-17 16:02+0000\n"
-"PO-Revision-Date: 2025-08-18 13:49+0300\n"
-"Last-Translator: \n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2025-12-26 21:04+0800\n"
+"PO-Revision-Date: 2025-12-26 21:06+0800\n"
+"Last-Translator: hwf1324 <1398969445@qq.com>\n"
 "Language-Team: \n"
 "Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #. Translators: This label is the name of the setting that controls whether
 #. the mouse object is automatically updated when the mouse wheel is scrolled.
-#: addon/visionEnhancementProviders/updateMouseObject.py:41
+#: addon\visionEnhancementProviders\updateMouseObject.py:50
 msgid "Mouse Wheel"
 msgstr "Коліщатко миші"
 
 #. Translators: This label is the name of the setting that controls whether
 #. the mouse object is automatically updated at the end of the core cycle.
-#: addon/visionEnhancementProviders/updateMouseObject.py:44
+#: addon\visionEnhancementProviders\updateMouseObject.py:53
 msgid "Core Cycle"
 msgstr "Цикл ядра"
 
 #. Translators: This label is the display name of the Auto update mouse object vision Enhancement Provider.
-#: addon/visionEnhancementProviders/updateMouseObject.py:54
+#: addon\visionEnhancementProviders\updateMouseObject.py:63
 msgid "Auto Update Mouse Object"
 msgstr "Автоматичне оновлення об'єкта миші"
 
 #. Translators: This label is the name of the setting that controls
 #. the automatic update method for the mouse object.
-#: addon/visionEnhancementProviders/updateMouseObject.py:63
-msgid "Automatic update mouse object method:"
-msgstr "Метод автоматичного оновлення об'єкта миші:"
+#: addon\visionEnhancementProviders\updateMouseObject.py:72
+msgid "Automatic update mouse object method"
+msgstr "Метод автоматичного оновлення об'єкта миші"
 
-#. Add-on summary, usually the user visible name of the addon.
-#. Translators: Summary for this add-on
-#. to be shown on installation and add-on information found in Add-ons Manager.
-#: buildVars.py:23
+#. Translators: This label is the name of the setting that controls the mouse move event delay.
+#: addon\visionEnhancementProviders\updateMouseObject.py:78
+msgid "Mouse move event delay (%S)"
+msgstr ""
+
+#. Translators: Enable checkbox on a vision enhancement provider on the vision settings category panel
+#: addon\visionEnhancementProviders\updateMouseObject.py:117
+#, fuzzy
+#| msgid "Auto Update Mouse Object"
+msgid "Enable Auto Update Mouse Object"
+msgstr "Автоматичне оновлення об'єкта миші"
+
+#. Translators: Options label on a vision enhancement provider on the vision settings category panel
+#: addon\visionEnhancementProviders\updateMouseObject.py:127
+msgid "Options:"
+msgstr ""
+
+#. Add-on summary/title, usually the user visible name of the add-on
+#. Translators: Summary/title for this add-on
+#. to be shown on installation and add-on information found in add-on store
+#: buildVars.py:21
 msgid "Mouse Enhancement"
 msgstr "Покращення миші"
 
 #. Add-on description
-#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-#: buildVars.py:26
+#. Translators: Long description to be shown for this add-on on add-on information from add-on store
+#: buildVars.py:24
 msgid ""
 "This add-on provides enhancement to mouse functionality in NVDA.\n"
 "\n"
@@ -65,10 +82,22 @@ msgstr ""
 "Цей додаток покращує функціональність миші в NVDA.\n"
 "\n"
 "Наприклад:\n"
-"Виправлено відстеження миші в додатку Electron (тільки 2024.4 або "
-"пізніші версії).\n"
+"Виправлено відстеження миші в додатку Electron (тільки 2024.4 або пізніші "
+"версії).\n"
 "Додатки Electron, такі як VS Code.\n"
 "Експериментальне виправлення відстеження миші в додатках WinUI.\n"
 "Додатки WinUI: наприклад, Windows Terminal, PowerToys v0.86.0 і новіші "
 "версії, деякі додатки, що входять до складу Windows, тощо.\n"
 "Автоматичне оновлення об'єкта миші."
+
+#: buildVars.py:37
+msgid ""
+"* Refactored Electron UIA-related components:\n"
+"  * Utilized the `IUIAutomation.ElementFromPointBuildCache` method to "
+"retrieve UIA elements from coordinates for creating redirected mouse "
+"objects.\n"
+"  * Simultaneously employed `IUIAutomationCondition` to exclude UIA elements "
+"with an empty `Name` attribute, resolving certain issues encountered during "
+"mouse navigation in VS Code.\n"
+"    * For example it is now possible to read the text on the hover panel."
+msgstr ""
