@@ -27,6 +27,27 @@ isDebug: bool = False
 ELECTRON_IA2_ATTRIBUTES = {"class": "View"}
 CHROME_SIDEBAR_EXTENSION_IA2_ATTRIBUTES = {"class": "SidePanel::BorderView"}
 
+emptyNamePropertyCondition = UIAHandler.handler.clientObject.CreateNotCondition(
+	UIAHandler.handler.clientObject.CreatePropertyCondition(
+		UIAHandler.UIA.UIA_NamePropertyId,
+		"",
+	)
+)
+mouseCacheRequest = UIAHandler.handler.baseCacheRequest.Clone()
+mouseCacheRequest.TreeFilter = UIAHandler.handler.clientObject.CreateAndConditionFromArray(
+	[
+		# UIAHandler.handler.clientObject.CreateNotCondition(
+		# 	UIAHandler.handler.clientObject.CreatePropertyCondition(
+		# 		UIAHandler.UIA.UIA_ControlTypePropertyId,
+		# 		UIAHandler.UIA_GroupControlTypeId,
+		# 	),
+		# ),
+		emptyNamePropertyCondition,
+	]
+)
+
+redirect = None
+
 
 class RedirectDocument(Ia2Web):
 
@@ -48,30 +69,15 @@ class RedirectDocument(Ia2Web):
 
 class RedirectChromiumUIA(Ia2Web):
 	def objectFromPointRedirect(self, x: int, y: int):
-		emptyNamePropertyCondition = UIAHandler.handler.clientObject.CreateNotCondition(
-			UIAHandler.handler.clientObject.CreatePropertyCondition(
-				UIAHandler.UIA.UIA_NamePropertyId,
-				"",
-			)
-		)
-		mouseCacheRequest = UIAHandler.handler.baseCacheRequest.Clone()
-		mouseCacheRequest.TreeFilter = UIAHandler.handler.clientObject.CreateAndConditionFromArray(
-			[
-				# UIAHandler.handler.clientObject.CreateNotCondition(
-				# 	UIAHandler.handler.clientObject.CreatePropertyCondition(
-				# 		UIAHandler.UIA.UIA_ControlTypePropertyId,
-				# 		UIAHandler.UIA_GroupControlTypeId,
-				# 	),
-				# ),
-				emptyNamePropertyCondition,
-			]
-		)
-		try:
-			redirect = UIAHandler.handler.clientObject.ElementFromPointBuildCache(
-				POINT(x, y), mouseCacheRequest
-			)
-		except COMError:
-			return None
+		def wrapper():
+			global redirect
+			try:
+				redirect = UIAHandler.handler.clientObject.ElementFromPointBuildCache(
+					POINT(x, y), mouseCacheRequest
+				)
+			except COMError:
+				pass
+		UIAHandler.handler.MTAThreadQueue.put(wrapper)
 		if not redirect:
 			return None
 		obj = UIA(UIAElement=redirect)

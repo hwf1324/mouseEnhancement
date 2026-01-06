@@ -20,6 +20,10 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+### v0.9.1
+
+* Use UIAHandler's MTA thread for UIA queries.
+
 ### v0.9.0
 
 * Refactored Electron UIA-related components:
