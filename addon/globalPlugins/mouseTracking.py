@@ -27,6 +27,27 @@ isDebug: bool = False
 ELECTRON_IA2_ATTRIBUTES = {"class": "View"}
 CHROME_SIDEBAR_EXTENSION_IA2_ATTRIBUTES = {"class": "SidePanel::BorderView"}
 
+emptyNamePropertyCondition = UIAHandler.handler.clientObject.CreateNotCondition(
+	UIAHandler.handler.clientObject.CreatePropertyCondition(
+		UIAHandler.UIA.UIA_NamePropertyId,
+		"",
+	)
+)
+mouseCacheRequest = UIAHandler.handler.baseCacheRequest.Clone()
+mouseCacheRequest.TreeFilter = UIAHandler.handler.clientObject.CreateAndConditionFromArray(
+	[
+		# UIAHandler.handler.clientObject.CreateNotCondition(
+		# 	UIAHandler.handler.clientObject.CreatePropertyCondition(
+		# 		UIAHandler.UIA.UIA_ControlTypePropertyId,
+		# 		UIAHandler.UIA_GroupControlTypeId,
+		# 	),
+		# ),
+		emptyNamePropertyCondition,
+	]
+)
+
+redirect = None
+
 
 class RedirectDocument(Ia2Web):
 

@@ -20,6 +20,10 @@
 
 ## 更新日志
 
+### v0.9.1
+
+* 使用 UIAHandler 的 MTA 线程进行 UIA 查询。
+
 ### v0.9.0
 
 * 重构 Electron UIA 相关部分：
