@@ -20,6 +20,10 @@ Some features may be moved out as standalone features in the future.
 
 ## Changelog
 
+## v0.9.2
+
+* Implement Tauri UIA redirection support in mouse tracking
+
 ### v0.9.1
 
 * Use UIAHandler's MTA thread for UIA queries.

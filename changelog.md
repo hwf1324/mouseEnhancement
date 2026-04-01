@@ -1,3 +1,3 @@
-# v0.9.1
+# v0.9.2
 
-* Use UIAHandler's MTA thread for UIA queries.
+* Implement Tauri UIA redirection support in mouse tracking
