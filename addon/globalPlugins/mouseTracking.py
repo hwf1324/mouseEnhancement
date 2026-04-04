@@ -84,23 +84,6 @@ class RedirectChromiumUIA(Ia2Web):
 		return obj
 
 
-class RedirectTauriUIA(IAccessible):
-	def objectFromPointRedirect(self, x: int, y: int):
-		def wrapper():
-			global redirect
-			try:
-				redirect = UIAHandler.handler.clientObject.ElementFromPointBuildCache(
-					POINT(x, y), mouseCacheRequest
-				)
-			except COMError:
-				pass
-		UIAHandler.handler.MTAThreadQueue.put(wrapper)
-		if not redirect:
-			return None
-		obj = UIA(UIAElement=redirect)
-		return obj
-
-
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def chooseNVDAObjectOverlayClasses(self, obj: NVDAObject, clsList: list[type[NVDAObject]]):
@@ -144,7 +127,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				and obj.windowClassName == "Chrome_RenderWidgetHostHWND"
 				and getattr(obj.parent, "windowClassName", "").startswith("TAURI_")
 			):
-				clsList.insert(0, RedirectTauriUIA)
+				clsList.insert(0, RedirectChromiumUIA)
 		except AttributeError:
 			pass
 
