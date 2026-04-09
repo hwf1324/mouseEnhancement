@@ -3,6 +3,7 @@
 # See the file COPYING.txt for more details.
 # Copyright (C) 2024-2025 hwf1324 <1398969445@qq.com>
 
+import threading
 import time
 from ctypes.wintypes import POINT
 
@@ -46,7 +47,23 @@ mouseCacheRequest.TreeFilter = UIAHandler.handler.clientObject.CreateAndConditio
 	]
 )
 
-redirect = None
+_redirect_cache_pos: tuple[int, int] | None = None
+_redirect_cache_element = None
+_redirect_cache_time: float = 0.0
+_REDIRECT_CACHE_DISTANCE = 5
+_REDIRECT_CACHE_TIMEOUT = 0.5
+
+_window_class_cache: dict[int, str] = {}
+
+
+def _get_cached_class_name(hwnd: int) -> str:
+	cls_name = _window_class_cache.get(hwnd)
+	if cls_name is None:
+		cls_name = winUser.getClassName(hwnd)
+		_window_class_cache[hwnd] = cls_name
+		if len(_window_class_cache) > 256:
+			_window_class_cache.clear()
+	return cls_name
 
 
 class RedirectDocument(Ia2Web):
@@ -69,19 +86,44 @@ class RedirectDocument(Ia2Web):
 
 class RedirectChromiumUIA(Ia2Web):
 	def objectFromPointRedirect(self, x: int, y: int):
-		def wrapper():
-			global redirect
+		global _redirect_cache_pos, _redirect_cache_element, _redirect_cache_time
+
+		now = time.time()
+		if (
+			_redirect_cache_pos is not None
+			and _redirect_cache_element is not None
+			and (now - _redirect_cache_time) < _REDIRECT_CACHE_TIMEOUT
+			and abs(x - _redirect_cache_pos[0]) <= _REDIRECT_CACHE_DISTANCE
+			and abs(y - _redirect_cache_pos[1]) <= _REDIRECT_CACHE_DISTANCE
+		):
 			try:
-				redirect = UIAHandler.handler.clientObject.ElementFromPointBuildCache(
+				return UIA(UIAElement=_redirect_cache_element)
+			except COMError:
+				_redirect_cache_element = None
+
+		result: list = [None]
+		done_event = threading.Event()
+
+		def wrapper():
+			try:
+				result[0] = UIAHandler.handler.clientObject.ElementFromPointBuildCache(
 					POINT(x, y), mouseCacheRequest
 				)
 			except COMError:
 				pass
+			finally:
+				done_event.set()
+
 		UIAHandler.handler.MTAThreadQueue.put(wrapper)
-		if not redirect:
+		done_event.wait(timeout=0.2)
+
+		if result[0] is None:
 			return None
-		obj = UIA(UIAElement=redirect)
-		return obj
+
+		_redirect_cache_pos = (x, y)
+		_redirect_cache_element = result[0]
+		_redirect_cache_time = now
+		return UIA(UIAElement=result[0])
 
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
@@ -91,11 +133,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			if obj.role == controlTypes.Role.PANE:
 				if (  # Electron
 					isinstance(obj, IAccessible)
+					and _get_cached_class_name(obj.IA2WindowHandle) == "Chrome_WidgetWin_1"
 					and obj.IA2Attributes in (
 						ELECTRON_IA2_ATTRIBUTES,
 						CHROME_SIDEBAR_EXTENSION_IA2_ATTRIBUTES,  # Chrome's Sidebar
 					)
-					and winUser.getClassName(obj.IA2WindowHandle) == "Chrome_WidgetWin_1"
 				):
 					if (
 						obj.previous.lastChild.windowClassName == "Chrome_RenderWidgetHostHWND"

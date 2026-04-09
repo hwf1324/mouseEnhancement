@@ -8,6 +8,7 @@
 import addonHandler
 import core
 import mouseHandler
+import time
 import winInputHook
 import wx
 from autoSettingsUtils.autoSettings import SupportedSettingType
@@ -31,11 +32,14 @@ addonHandler.initTranslation()
 WM_MOUSEHWHEEL = 0x020E
 WM_MOUSEWHEEL = 0x020A
 
+_CORE_CYCLE_MIN_INTERVAL = 0.1
+
 old_mouseCallback = mouseHandler.internal_mouseEvent
 
 
 def forwardHookMouseMessage(msg: int, x: int, y: int, injected: int):
-	pre_handleWindowMessage.notify(msg=msg, wParam=None, lParam=None)
+	if msg in (WM_MOUSEWHEEL, WM_MOUSEHWHEEL):
+		pre_handleWindowMessage.notify(msg=msg, wParam=None, lParam=None)
 
 	return old_mouseCallback(msg, x, y, injected)
 
@@ -220,6 +224,7 @@ class AutoUpdateMouseObjectProvider(providerBase.VisionEnhancementProvider):
 
 	def __init__(self):
 		super().__init__()
+		self._last_core_cycle_time: float = 0.0
 		if winInputHook.mouseCallback:
 			log.info("Hooking mouseHandler.internal_mouseEvent function...")
 			winInputHook.setCallbacks(mouse=forwardHookMouseMessage)
@@ -231,6 +236,10 @@ class AutoUpdateMouseObjectProvider(providerBase.VisionEnhancementProvider):
 
 	def handleCoreCycle(self):
 		if self._settings.updateMethod == "coreCycle":
+			now = time.time()
+			if now - self._last_core_cycle_time < _CORE_CYCLE_MIN_INTERVAL:
+				return
+			self._last_core_cycle_time = now
 			mouseHandler.executeMouseMoveEvent(*mouseHandler.curMousePos)
 
 	def terminate(self):
