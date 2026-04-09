@@ -21,7 +21,6 @@ from NVDAObjects.IAccessible.chromium import Document
 from NVDAObjects.IAccessible.ia2Web import Ia2Web
 from NVDAObjects.UIA import UIA
 
-
 isDebug: bool = False
 
 ELECTRON_IA2_ATTRIBUTES = {"class": "View"}
@@ -67,7 +66,7 @@ class RedirectDocument(Ia2Web):
 		return obj
 
 
-class RedirectChromiumUIA(Ia2Web):
+class RedirectChromiumUIA(IAccessible):
 	def objectFromPointRedirect(self, x: int, y: int):
 		def wrapper():
 			global redirect
@@ -85,14 +84,13 @@ class RedirectChromiumUIA(Ia2Web):
 
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-
 	def chooseNVDAObjectOverlayClasses(self, obj: NVDAObject, clsList: list[type[NVDAObject]]):
 		try:
-			if obj.role == controlTypes.Role.PANE:
-				if (  # Electron
-					isinstance(obj, IAccessible)
-					and obj.IA2Attributes in (
-						ELECTRON_IA2_ATTRIBUTES,
+			if obj.role == controlTypes.Role.PANE and isinstance(obj, IAccessible):
+				if (
+					obj.IA2Attributes
+					in (
+						ELECTRON_IA2_ATTRIBUTES,  # Electron
 						CHROME_SIDEBAR_EXTENSION_IA2_ATTRIBUTES,  # Chrome's Sidebar
 					)
 					and winUser.getClassName(obj.IA2WindowHandle) == "Chrome_WidgetWin_1"
@@ -106,6 +104,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 						and obj.childCount == 0
 					):
 						clsList.insert(0, RedirectChromiumUIA)
+				elif (  # Tauri frameless window
+					obj.windowClassName == "Chrome_RenderWidgetHostHWND"
+					and obj.parent
+					and obj.parent.windowClassName == "TAURI_DRAG_RESIZE_BORDERS"
+				):
+					clsList.insert(0, RedirectChromiumUIA)
+
 				if isDebug:
 					log.debug("Redirecting the devInfo of the object:\n%s" % "\n".join(obj.devInfo))
 

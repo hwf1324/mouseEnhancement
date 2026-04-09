@@ -1,3 +1,4 @@
-# v0.9.1
+# v0.9.2
 
-* Use UIAHandler's MTA thread for UIA queries.
+* Add mouse tracking support for frameless windows in the Tauri framework.
+  * Thanks to @ryusei-48 for providing the patch reference.
