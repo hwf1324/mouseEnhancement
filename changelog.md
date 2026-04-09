@@ -1,3 +1,10 @@
+# v0.9.4
+
+* Non-blocking UIA element queries: return cached result instantly while updating in background.
+* Add coordinate-based cache to IAccessible accHitTest (RedirectDocument).
+* Increase cache hit distance from 5px to 15px and timeout from 0.5s to 1.0s.
+* Debounce mouse wheel update events to prevent queue flooding.
+
 # v0.9.3
 
 * Performance improvements for complex UI applications such as VS Code.

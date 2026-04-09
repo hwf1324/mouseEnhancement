@@ -36,6 +36,8 @@ _CORE_CYCLE_MIN_INTERVAL = 0.1
 
 old_mouseCallback = mouseHandler.internal_mouseEvent
 
+_wheel_update_pending = False
+
 
 def forwardHookMouseMessage(msg: int, x: int, y: int, injected: int):
 	if msg in (WM_MOUSEWHEEL, WM_MOUSEHWHEEL):
@@ -231,8 +233,16 @@ class AutoUpdateMouseObjectProvider(providerBase.VisionEnhancementProvider):
 			pre_handleWindowMessage.register(self.handleWindowMouseWheelMessage)
 
 	def handleWindowMouseWheelMessage(self, msg: int, wParam: int, lParam: int):
+		global _wheel_update_pending
 		if self._settings.updateMethod == "mouseWheel" and msg in (WM_MOUSEWHEEL, WM_MOUSEHWHEEL):
-			core.callLater(100, mouseHandler.executeMouseMoveEvent, *mouseHandler.curMousePos)
+			if not _wheel_update_pending:
+				_wheel_update_pending = True
+				core.callLater(100, self._executeWheelUpdate)
+
+	def _executeWheelUpdate(self):
+		global _wheel_update_pending
+		_wheel_update_pending = False
+		mouseHandler.executeMouseMoveEvent(*mouseHandler.curMousePos)
 
 	def handleCoreCycle(self):
 		if self._settings.updateMethod == "coreCycle":

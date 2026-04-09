@@ -30,14 +30,13 @@ Experimental fix for mouse tracking in WinUI apps.
 WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
 Automatically update the mouse object."""),
 	# version
-	addon_version="0.9.3",
+	addon_version="0.9.4",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""* Performance improvements for complex UI applications such as VS Code.
-* Add throttling to core cycle mouse object updates (100ms minimum interval).
-* Add coordinate-based cache and proper MTA thread synchronization to UIA element queries.
-* Filter mouse hook forwarding to wheel events only.
-* Cache window class name lookups and optimize overlay class checks."""),
+	addon_changelog=_("""* Non-blocking UIA element queries: return cached result instantly while updating in background.
+* Add coordinate-based cache to IAccessible accHitTest (RedirectDocument).
+* Increase cache hit distance from 5px to 15px and timeout from 0.5s to 1.0s.
+* Debounce mouse wheel update events to prevent queue flooding."""),
 	# Author(s)
 	addon_author="hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support

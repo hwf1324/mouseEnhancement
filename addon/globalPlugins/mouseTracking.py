@@ -47,11 +47,16 @@ mouseCacheRequest.TreeFilter = UIAHandler.handler.clientObject.CreateAndConditio
 	]
 )
 
-_redirect_cache_pos: tuple[int, int] | None = None
-_redirect_cache_element = None
-_redirect_cache_time: float = 0.0
-_REDIRECT_CACHE_DISTANCE = 5
-_REDIRECT_CACHE_TIMEOUT = 0.5
+_REDIRECT_CACHE_DISTANCE = 8
+_REDIRECT_CACHE_TIMEOUT = 0.75
+
+_uia_cache_pos: tuple[int, int] | None = None
+_uia_cache_element = None
+_uia_cache_time: float = 0.0
+
+_doc_cache_pos: tuple[int, int] | None = None
+_doc_cache_obj: IAccessible | None = None
+_doc_cache_time: float = 0.0
 
 _window_class_cache: dict[int, str] = {}
 
@@ -66,9 +71,33 @@ def _get_cached_class_name(hwnd: int) -> str:
 	return cls_name
 
 
+def _is_cache_hit(
+	cache_pos: tuple[int, int] | None,
+	cache_time: float,
+	x: int,
+	y: int,
+	now: float,
+) -> bool:
+	return (
+		cache_pos is not None
+		and (now - cache_time) < _REDIRECT_CACHE_TIMEOUT
+		and abs(x - cache_pos[0]) <= _REDIRECT_CACHE_DISTANCE
+		and abs(y - cache_pos[1]) <= _REDIRECT_CACHE_DISTANCE
+	)
+
+
 class RedirectDocument(Ia2Web):
 
 	def objectFromPointRedirect(self, x: int, y: int):
+		global _doc_cache_pos, _doc_cache_obj, _doc_cache_time
+
+		now = time.time()
+		if (
+			_doc_cache_obj is not None
+			and _is_cache_hit(_doc_cache_pos, _doc_cache_time, x, y, now)
+		):
+			return _doc_cache_obj
+
 		docObj: Document = self.previous.lastChild
 		try:
 			redirect = docObj.IAccessibleObject.accHitTest(x, y)
@@ -81,28 +110,28 @@ class RedirectDocument(Ia2Web):
 		redirect = IAccessibleHandler.normalizeIAccessible(redirect)
 		obj: IAccessible = IAccessible(IAccessibleObject=redirect, IAccessibleChildID=winUser.CHILDID_SELF)
 
+		_doc_cache_pos = (x, y)
+		_doc_cache_obj = obj
+		_doc_cache_time = now
 		return obj
 
 
 class RedirectChromiumUIA(Ia2Web):
 	def objectFromPointRedirect(self, x: int, y: int):
-		global _redirect_cache_pos, _redirect_cache_element, _redirect_cache_time
+		global _uia_cache_pos, _uia_cache_element, _uia_cache_time
 
 		now = time.time()
 		if (
-			_redirect_cache_pos is not None
-			and _redirect_cache_element is not None
-			and (now - _redirect_cache_time) < _REDIRECT_CACHE_TIMEOUT
-			and abs(x - _redirect_cache_pos[0]) <= _REDIRECT_CACHE_DISTANCE
-			and abs(y - _redirect_cache_pos[1]) <= _REDIRECT_CACHE_DISTANCE
+			_uia_cache_element is not None
+			and _is_cache_hit(_uia_cache_pos, _uia_cache_time, x, y, now)
 		):
 			try:
-				return UIA(UIAElement=_redirect_cache_element)
+				return UIA(UIAElement=_uia_cache_element)
 			except COMError:
-				_redirect_cache_element = None
+				_uia_cache_element = None
 
-		result: list = [None]
 		done_event = threading.Event()
+		result: list = [None]
 
 		def wrapper():
 			try:
@@ -115,14 +144,14 @@ class RedirectChromiumUIA(Ia2Web):
 				done_event.set()
 
 		UIAHandler.handler.MTAThreadQueue.put(wrapper)
-		done_event.wait(timeout=0.2)
+		done_event.wait(timeout=0.1)
 
 		if result[0] is None:
 			return None
 
-		_redirect_cache_pos = (x, y)
-		_redirect_cache_element = result[0]
-		_redirect_cache_time = now
+		_uia_cache_pos = (x, y)
+		_uia_cache_element = result[0]
+		_uia_cache_time = now
 		return UIA(UIAElement=result[0])
 
 
