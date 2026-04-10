@@ -1,7 +1,7 @@
 # Build customizations
 # Change this file instead of sconstruct or manifest files, whenever possible.
 
-from site_scons.site_tools.NVDATool.typings import AddonInfo, BrailleTables, SymbolDictionaries
+from site_scons.site_tools.NVDATool.typings import AddonInfo, BrailleTables, SymbolDictionaries, SpeechDictionaries
 
 # Since some strings in `addon_info` are translatable,
 # we need to include them in the .po files.
@@ -30,10 +30,13 @@ Experimental fix for mouse tracking in WinUI apps.
 WinUI applications: e.g. Windows Terminal, PowerToys v0.86.0 and higher, some applications that come with Windows, etc.
 Automatically update the mouse object."""),
 	# version
-	addon_version="0.9.1",
+	addon_version="0.9.2",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""* Use UIAHandler's MTA thread for UIA queries."""),
+	addon_changelog=_("""* Add mouse tracking support for frameless windows in the Tauri framework.
+  * Thanks to @ryusei-48 for providing the patch reference.
+* Disabled the forced use of UIA implementation in the 飞书 module and fixed the character navigation in the edit box. Supported mouse tracking using redirection objects.
+* Update add-on template."""),
 	# Author(s)
 	addon_author="hwf1324 <1398969445@qq.com>",
 	# URL for the add-on documentation support
@@ -110,3 +113,12 @@ brailleTables: BrailleTables = {}
 # displayName (name of the speech dictionary shown to users and translatable),
 # mandatory (True when always enabled, False when not.
 symbolDictionaries: SymbolDictionaries = {}
+
+# Custom speech dictionaries (distinct from symbol dictionaries above)
+# Speech dictionary files reside in the speechDicts folder and are named `name.dic`.
+# If your add-on includes custom speech (pronunciation) dictionaries (most will not), fill out this dictionary.
+# Each key is the name of the dictionary,
+# with keys inside recording the following attributes:
+# displayName (name of the speech dictionary shown to users and translatable),
+# mandatory (True when always enabled, False when not).
+speechDictionaries: SpeechDictionaries = {}
