@@ -30,7 +30,7 @@ emptyNamePropertyCondition = UIAHandler.handler.clientObject.CreateNotCondition(
 	UIAHandler.handler.clientObject.CreatePropertyCondition(
 		UIAHandler.UIA.UIA_NamePropertyId,
 		"",
-	)
+	),
 )
 mouseCacheRequest = UIAHandler.handler.baseCacheRequest.Clone()
 mouseCacheRequest.TreeFilter = UIAHandler.handler.clientObject.CreateAndConditionFromArray(
@@ -42,14 +42,13 @@ mouseCacheRequest.TreeFilter = UIAHandler.handler.clientObject.CreateAndConditio
 		# 	),
 		# ),
 		emptyNamePropertyCondition,
-	]
+	],
 )
 
 redirect = None
 
 
 class RedirectDocument(Ia2Web):
-
 	def objectFromPointRedirect(self, x: int, y: int):
 		docObj: Document = self.previous.lastChild
 		try:
@@ -72,10 +71,12 @@ class RedirectChromiumUIA(IAccessible):
 			global redirect
 			try:
 				redirect = UIAHandler.handler.clientObject.ElementFromPointBuildCache(
-					POINT(x, y), mouseCacheRequest
+					POINT(x, y),
+					mouseCacheRequest,
 				)
 			except COMError:
 				pass
+
 		UIAHandler.handler.MTAThreadQueue.put(wrapper)
 		if not redirect:
 			return None
@@ -95,14 +96,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					)
 					and winUser.getClassName(obj.IA2WindowHandle) == "Chrome_WidgetWin_1"
 				):
-					if (
-						obj.previous.lastChild.windowClassName == "Chrome_RenderWidgetHostHWND"
-					):
+					if obj.previous.lastChild.windowClassName == "Chrome_RenderWidgetHostHWND":
 						clsList.insert(0, RedirectDocument)
-					elif (
-						isinstance(obj.parent, UIA)
-						and obj.childCount == 0
-					):
+					elif isinstance(obj.parent, UIA) and obj.childCount == 0:
 						clsList.insert(0, RedirectChromiumUIA)
 				elif (  # Tauri frameless window
 					obj.windowClassName == "Chrome_RenderWidgetHostHWND"
@@ -115,7 +111,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					log.debug("Redirecting the devInfo of the object:\n%s" % "\n".join(obj.devInfo))
 
 				if (  # Force the use of the application's UIA implementation
-					obj.windowClassName in (
+					obj.windowClassName
+					in (
 						"Microsoft.UI.Content.DesktopChildSiteBridge",  # WinUI
 						"Windows.UI.Composition.DesktopWindowContentBridge",
 						# ! Since #18 temporarily disables this rule, note: Chrome also uses this window class instead of just Electron.
@@ -124,16 +121,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				) and not obj.appModule.isGoodUIAWindow(obj.windowHandle):
 					log.info(
 						"Determines the devInfo that is forced to be a good UIA window object:\n%s"
-						% "\n".join(obj.devInfo)
+						% "\n".join(obj.devInfo),
 					)
 					obj.appModule.isGoodUIAWindow = lambda hwnd: True
 		except AttributeError:
 			pass
 
 	def event_mouseMove(self, obj: NVDAObject, nextHandler, x: int, y: int):
-		if (
-			config.conf["vision"]["autoUpdateMouseObject"]["updateMethod"] == "coreCycle"
-			and mouseHandler.lastMouseEventTime >= time.time() - (config.conf["vision"]["autoUpdateMouseObject"]["mouseMoveEventDelay"] / 1000)
+		if config.conf["vision"]["autoUpdateMouseObject"][
+			"updateMethod"
+		] == "coreCycle" and mouseHandler.lastMouseEventTime >= time.time() - (
+			config.conf["vision"]["autoUpdateMouseObject"]["mouseMoveEventDelay"] / 1000
 		):
 			return
 		nextHandler()

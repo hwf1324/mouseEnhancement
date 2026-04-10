@@ -1,11 +1,9 @@
-
 import gettext
 from pathlib import Path
 
 import markdown
 
 from .typings import AddonInfo
-
 
 
 def md2html(

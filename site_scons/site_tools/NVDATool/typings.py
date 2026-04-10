@@ -1,7 +1,6 @@
 from typing import TypedDict, Protocol
 
 
-
 class AddonInfo(TypedDict):
 	addon_name: str
 	addon_summary: str
