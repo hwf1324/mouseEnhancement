@@ -142,8 +142,8 @@ class AutoUpdateMouseObjectSettingsPanel(
 		return VisionEnhancementProvider.getSettings()
 
 	def makeSettings(self, sizer: wx.BoxSizer) -> None:
-		settingsInst = self.getSettings()
-		settingsStorage = self._getSettingsStorage()
+		# settingsInst = self.getSettings()
+		# settingsStorage = self._getSettingsStorage()
 		# for setting in settingsInst.supportedSettings:
 		# 	if setting.id == "mouseMoveEventDelay":
 		# 		mouseDelaySetting: NumericDriverSetting = setting

@@ -30,7 +30,6 @@ def restrictParagraphToLine():
 
 
 class AppModule(appModuleHandler.AppModule):
-
 	def event_mouseMove(self, obj: UIA.UIA, nextHandler: Callable[[], None], x: int, y: int) -> None:
 		if obj.role == controlTypes.Role.TERMINAL:
 			with restrictParagraphToLine():
