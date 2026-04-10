@@ -5,4 +5,4 @@
 
 """PDFconverter appModule for PDFgear"""
 
-from pdflauncher import *  # noqa: F403
+from pdflauncher import *

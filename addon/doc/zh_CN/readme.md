@@ -8,9 +8,9 @@
 
 ## 功能
 
-* 修复 [Electron](https://www.electronjs.org/)、[飞书](https://www.feishu.cn/)应用、[Tauri](https://tauri.app/) 框架无边框窗口模式中的鼠标导航（仅 2024.4 或更高版本）。
+* 修复 [Electron](https://www.electronjs.org/) 应用中的鼠标导航（仅 2024.4 或更高版本）。
   * Electron 应用，例如 [VS Code](https://code.visualstudio.com/)。
-* 实验性修复 [WinUI](https://github.com/microsoft/microsoft-ui-xaml)、[Zoom](https://www.zoom.com/)应用中的鼠标导航，
+* 实验性修复 [WinUI](https://github.com/microsoft/microsoft-ui-xaml)、[Zoom](https://www.zoom.com/)、[飞书](https://www.feishu.cn/)应用中的鼠标导航，
   * [Windows 终端](https://github.com/microsoft/terminal)：如果文本识别单元室段落，则在终端控件中移动鼠标时，将文本识别单元限制为行。
 * 修复部分 NVIDIA 控制面板中静态文本控件的错误描述。
 * 修复了 [PDFgear](https://www.pdfgear.com/) 中按钮无法获取描述文本的问题。
@@ -19,13 +19,6 @@
   * 仅当在更新方式为“核心周期”时，鼠标移动事件延迟参数才会生效，以实现 <https://github.com/nvaccess/nvda/issues/19372>。
 
 ## 更新日志
-
-### v0.9.2
-
-* 添加 Tauri 框架中的无边框窗口的鼠标导航支持。
-  * 感谢 @ryusei-48 提出的补丁参考。
-* 禁用飞书模块的强制使用 UIA 实现，修复编辑框的字符导航。使用重定向对象的方式支持鼠标导航。
-* 更新插件模板。
 
 ### v0.9.1
 

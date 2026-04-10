@@ -8,7 +8,7 @@ Some features may be moved out as standalone features in the future.
 
 ## Features
 
-* Fix mouse tracking in [Electron](https://www.electronjs.org/) apps, [Tauri](https://tauri.app/) framework frameless windows mode (Only 2024.4 or later).
+* Fix mouse tracking in [Electron](https://www.electronjs.org/) apps (Only 2024.4 or later).
   * Electron apps, such as [VS Code](https://code.visualstudio.com/).
 * Experimental fix mouse tracking in [WinUI](https://github.com/microsoft/microsoft-ui-xaml), [Zoom](https://www.zoom.com/), [飞书](https://www.feishu.cn/) apps.
   * [Windows Terminal](https://github.com/microsoft/terminal): If the text unit is a paragraph, moving the mouse in the Terminal control restricts the text unit to lines.
@@ -19,13 +19,6 @@ Some features may be moved out as standalone features in the future.
   * The mouse move event delay parameter only takes effect when the update method is set to “core cycle,” enabling <https://github.com/nvaccess/nvda/issues/19372>.
 
 ## Changelog
-
-### v0.9.2
-
-* Add mouse tracking support for frameless windows in the Tauri framework.
-  * Thanks to @ryusei-48 for providing the patch reference.
-* Disabled the forced use of UIA implementation in the 飞书 module and fixed the character navigation in the edit box. Supported mouse tracking using redirection objects.
-* Update add-on template.
 
 ### v0.9.1
 

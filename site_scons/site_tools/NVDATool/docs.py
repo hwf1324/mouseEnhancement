@@ -1,3 +1,4 @@
+
 import gettext
 from pathlib import Path
 
@@ -6,14 +7,15 @@ import markdown
 from .typings import AddonInfo
 
 
+
 def md2html(
-	source: str | Path,
-	dest: str | Path,
-	*,
-	moFile: str | Path | None,
-	mdExtensions: list[str],
-	addon_info: AddonInfo,
-):
+		source: str | Path,
+		dest: str | Path,
+		*,
+		moFile: str | Path|None,
+		mdExtensions: list[str],
+		addon_info: AddonInfo
+	):
 	if isinstance(source, str):
 		source = Path(source)
 	if isinstance(dest, str):
@@ -53,7 +55,7 @@ def md2html(
 			"</head>\n<body>",
 			htmlText,
 			"</body>\n</html>",
-		),
+		)
 	)
 	with dest.open("w", encoding="utf-8") as f:
-		f.write(docText)  # type: ignore
+		f.write(docText) # type: ignore
