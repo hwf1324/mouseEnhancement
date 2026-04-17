@@ -33,7 +33,10 @@ jobs:
         uv sync
 
     - name: Code checks
-      run: export SKIP=no-commit-to-branch; uv run pre-commit run --all-files
+      if: ${{ github.event_name == 'pull_request' }}
+      run: |
+        git fetch origin ${{ github.base_ref }}
+        uv run pre-commit run --from-ref origin/${{ github.base_ref }} --to-ref HEAD --show-diff-on-failure
 
     - name: building addon
       run: uv run scons && uv run scons pot
