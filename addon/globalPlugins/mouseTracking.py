@@ -115,6 +115,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					in (
 						"Microsoft.UI.Content.DesktopChildSiteBridge",  # WinUI
 						"Windows.UI.Composition.DesktopWindowContentBridge",
+						"CASCADIA_HOSTING_WINDOW_CLASS",  # Windows Terminal
 						# ! Since #18 temporarily disables this rule, note: Chrome also uses this window class instead of just Electron.
 						# "Intermediate D3D Window",  # Chromium with UIA
 					)

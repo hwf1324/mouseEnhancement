@@ -36,6 +36,7 @@ Automatically update the mouse object."""),
 	addon_changelog=_("""* Add mouse tracking support for frameless windows in the Tauri framework.
   * Thanks to @ryusei-48 for providing the patch reference.
 * Disabled the forced use of UIA implementation in the 飞书 module and fixed the character navigation in the edit box. Supported mouse tracking using redirection objects.
+* Update the Windows Terminal window class name rules.
 * Update add-on template."""),
 	# Author(s)
 	addon_author="hwf1324 <1398969445@qq.com>",
