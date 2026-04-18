@@ -35,8 +35,8 @@ jobs:
     - name: Code checks
       if: ${{ github.event_name == 'pull_request' }}
       run: |
-        git fetch origin ${{ github.base_ref }}
-        uv run pre-commit run --from-ref origin/${{ github.base_ref }} --to-ref HEAD --show-diff-on-failure
+        git fetch origin ${{ github.event.pull_request.base.ref }}
+        uv run pre-commit run --from-ref origin/${{ github.event.pull_request.base.ref }} --to-ref HEAD --show-diff-on-failure
 
     - name: building addon
       run: uv run scons && uv run scons pot
