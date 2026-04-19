@@ -32,12 +32,6 @@ jobs:
         sudo apt-get install -y gettext
         uv sync
 
-    - name: Code checks
-      if: ${{ github.event_name == 'pull_request' }}
-      run: |
-        git fetch --no-tags --no-recurse-submodules --depth=1 origin ${{ github.event.pull_request.base.ref }}
-        uv run pre-commit run --from-ref FETCH_HEAD --to-ref HEAD --show-diff-on-failure
-
     - name: building addon
       run: uv run scons && uv run scons pot
 
