@@ -110,17 +110,20 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				if isDebug:
 					log.debug("Redirecting the devInfo of the object:\n%s" % "\n".join(obj.devInfo))
 
-				if (  # Force the use of the application's UIA implementation
-					obj.windowClassName
-					in (
-						"Microsoft.UI.Content.DesktopChildSiteBridge",  # WinUI
-						"Microsoft.UI.Content.PopupWindowSiteBridge",  # Temporary: Access the new context menu in Explorer using UIA
-						"Windows.UI.Composition.DesktopWindowContentBridge",
-						"CASCADIA_HOSTING_WINDOW_CLASS",  # Windows Terminal
-						# ! Since #18 temporarily disables this rule, note: Chrome also uses this window class instead of just Electron.
-						# "Intermediate D3D Window",  # Chromium with UIA
+				if (
+					(  # Force the use of the application's UIA implementation
+						obj.windowClassName
+						in (
+							"Microsoft.UI.Content.DesktopChildSiteBridge",  # WinUI
+							"Microsoft.UI.Content.PopupWindowSiteBridge",  # Temporary: Access the new context menu in Explorer using UIA
+							"Windows.UI.Composition.DesktopWindowContentBridge",
+							"CASCADIA_HOSTING_WINDOW_CLASS",  # Windows Terminal
+							# ! Since #18 temporarily disables this rule, note: Chrome also uses this window class instead of just Electron.
+							# "Intermediate D3D Window",  # Chromium with UIA
+						)
 					)
-				) and not obj.appModule.isGoodUIAWindow(obj.windowHandle):
+					and not obj.appModule.isGoodUIAWindow(obj.windowHandle)
+				):
 					log.info(
 						"Determines the devInfo that is forced to be a good UIA window object:\n%s"
 						% "\n".join(obj.devInfo),
