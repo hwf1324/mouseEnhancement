@@ -114,6 +114,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					obj.windowClassName
 					in (
 						"Microsoft.UI.Content.DesktopChildSiteBridge",  # WinUI
+						"Microsoft.UI.Content.PopupWindowSiteBridge",  # Temporary: Access the new context menu in Explorer using UIA
 						"Windows.UI.Composition.DesktopWindowContentBridge",
 						"CASCADIA_HOSTING_WINDOW_CLASS",  # Windows Terminal
 						# ! Since #18 temporarily disables this rule, note: Chrome also uses this window class instead of just Electron.
