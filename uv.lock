@@ -3,42 +3,6 @@ revision = 3
 requires-python = "==3.13.*"
 
 [[package]]
-name = "addontemplate"
-source = { editable = "." }
-dependencies = [
-    { name = "crowdin-api-client" },
-    { name = "lxml" },
-    { name = "markdown" },
-    { name = "markdown-link-attr-modifier" },
-    { name = "mdx-gh-links" },
-    { name = "mdx-truly-sane-lists" },
-    { name = "nh3" },
-    { name = "pre-commit" },
-    { name = "pyright", extra = ["nodejs"] },
-    { name = "requests" },
-    { name = "ruff" },
-    { name = "scons" },
-    { name = "uv" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "crowdin-api-client", specifier = "==1.24.1" },
-    { name = "lxml", specifier = "==6.1.0" },
-    { name = "markdown", specifier = "==3.10" },
-    { name = "markdown-link-attr-modifier", specifier = "==0.2.1" },
-    { name = "mdx-gh-links", specifier = "==0.4" },
-    { name = "mdx-truly-sane-lists", specifier = "==1.3" },
-    { name = "nh3", specifier = "==0.3.2" },
-    { name = "pre-commit", specifier = "==4.2.0" },
-    { name = "pyright", extras = ["nodejs"], specifier = "==1.1.407" },
-    { name = "requests", specifier = "==2.33.0" },
-    { name = "ruff", specifier = "==0.14.5" },
-    { name = "scons", specifier = "==4.10.1" },
-    { name = "uv", specifier = "==0.11.6" },
-]
-
-[[package]]
 name = "certifi"
 version = "2025.11.12"
 source = { registry = "https://pypi.org/simple" }
@@ -214,6 +178,42 @@ wheels = [
 ]
 
 [[package]]
+name = "mouseenhancement"
+source = { editable = "." }
+dependencies = [
+    { name = "crowdin-api-client" },
+    { name = "lxml" },
+    { name = "markdown" },
+    { name = "markdown-link-attr-modifier" },
+    { name = "mdx-gh-links" },
+    { name = "mdx-truly-sane-lists" },
+    { name = "nh3" },
+    { name = "pre-commit" },
+    { name = "pyright", extra = ["nodejs"] },
+    { name = "requests" },
+    { name = "ruff" },
+    { name = "scons" },
+    { name = "uv" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "crowdin-api-client", specifier = "==1.24.1" },
+    { name = "lxml", specifier = "==6.1.0" },
+    { name = "markdown", specifier = "==3.10" },
+    { name = "markdown-link-attr-modifier", specifier = "==0.2.1" },
+    { name = "mdx-gh-links", specifier = "==0.4" },
+    { name = "mdx-truly-sane-lists", specifier = "==1.3" },
+    { name = "nh3", specifier = "==0.3.2" },
+    { name = "pre-commit", specifier = "==4.2.0" },
+    { name = "pyright", extras = ["nodejs"], specifier = "==1.1.407" },
+    { name = "requests", specifier = "==2.33.0" },
+    { name = "ruff", specifier = "==0.14.5" },
+    { name = "scons", specifier = "==4.10.1" },
+    { name = "uv", specifier = "==0.11.6" },
+]
+
+[[package]]
 name = "nh3"
 version = "0.3.2"
 source = { registry = "https://pypi.org/simple" }
@@ -383,11 +383,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.6.3"
+version = "2.7.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz", hash = "sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed", size = 435556, upload-time = "2026-01-07T16:24:43.925Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c", size = 433602, upload-time = "2026-05-07T16:13:18.596Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl", hash = "sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4", size = 131584, upload-time = "2026-01-07T16:24:42.685Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
 ]
 
 [[package]]
