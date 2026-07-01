@@ -125,9 +125,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					and not obj.appModule.isGoodUIAWindow(obj.windowHandle)
 				):
 					log.info(
-						"Determines the devInfo that is forced to be a good UIA window object:\n%s"
-						% "\n".join(obj.devInfo),
+						"Forcing %r to use its UIA implementation (window class: %s)"
+						% (obj.appModule, obj.windowClassName),
 					)
+					if isDebug:
+						log.debug(
+							"devInfo of the object forced to be a good UIA window:\n%s"
+							% "\n".join(obj.devInfo),
+						)
 					obj.appModule.isGoodUIAWindow = lambda hwnd: True
 		except AttributeError:
 			pass
