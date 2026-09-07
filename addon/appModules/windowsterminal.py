@@ -5,8 +5,8 @@
 
 """Windows Terminal appModule"""
 
-from contextlib import contextmanager
 from collections.abc import Callable
+from contextlib import contextmanager
 
 import appModuleHandler
 import controlTypes

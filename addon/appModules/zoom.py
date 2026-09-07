@@ -5,9 +5,9 @@
 
 """Zoom appModule"""
 
-from nvdaBuiltin.appModules.zoom import *  # noqa: F403
+from nvdaBuiltin.appModules.zoom import *
 
 
-class AppModule(AppModule):  # noqa: F405
+class AppModule(AppModule):
 	def isGoodUIAWindow(self, hwnd):
 		return True
