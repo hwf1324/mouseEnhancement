@@ -25,7 +25,6 @@ from vision import providerBase
 from vision.visionHandlerExtensionPoints import EventExtensionPoints
 from winAPI.messageWindow import pre_handleWindowMessage
 
-
 addonHandler.initTranslation()
 
 WM_MOUSEHWHEEL = 0x020E
